@@ -1,9 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
-import IPython.display as display
-
 from utils import get_dataset
-from matplotlib.patches import Rectangle
 
 # %matplotlib inline
 dataset = get_dataset("./data/train/*.tfrecord", label_map="./experiments/label_map.pbtxt")
@@ -14,7 +10,7 @@ def get_box_num(batch):
     boxes = batch['groundtruth_boxes'].numpy()
 
     count = len(boxes) 
-    print(count)
+    # print(count)
     return count
 
 

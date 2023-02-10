@@ -1,9 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import time  
 from matplotlib.patches import Rectangle
 from utils import get_train_input
-# %matplotlib inline
 
 train_dataset = get_train_input("/home/workspace/experiments/reference/pipeline_new.config")
 
@@ -26,8 +24,6 @@ def display_instances(image, bboxes, classes):
         rec = Rectangle((x1, y1), x2-x1, y2-y1, facecolor='none', edgecolor='r', linewidth=2)
         ax.add_patch(rec)
     plt.show()
-    plt.savefig("/home/workspace/tmp/"+str(time.time())+".png")
-
 
 def display_batch(batch):
     # get images, bboxes and classes
@@ -39,7 +35,7 @@ def display_batch(batch):
     for idx in range(batch_size):
         display_instances(batched_images[idx, ...], 
                           batched_bboxes[idx, :num_bboxes[idx], :],
-                          batched_classes[idx, ...])                
+                          batched_classes[idx, ...])
         
         
 for batch in train_dataset.take(1):

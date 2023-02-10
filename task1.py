@@ -1,9 +1,6 @@
-import numpy as np
 import matplotlib.pyplot as plt
-import IPython.display as display
-
+import matplotlib.patches as patches
 from utils import get_dataset
-from matplotlib.patches import Rectangle
 
 # %matplotlib inline
 dataset = get_dataset(
@@ -23,14 +20,14 @@ def display_instances(batch):
     color = {1: "red", 2: "blue", 4: "green"}
 
     # create a figure and axes objects(the objects that have plotting methods)
-    fig, ax = plt.subplots(1, figsize=(4, 4))
+    figure, axes = plt.subplots(1, figsize=(4, 4))
 
     # add colored boxes
     for box, classes in zip(boxes, batch["groundtruth_classes"].numpy()):
         anchor = (box[1], box[0])
         width = box[3] - box[1]
         height = box[2] - box[0]
-        rec = Rectangle(
+        rec = patches.Rectangle(
             anchor,
             width,
             height,
@@ -38,10 +35,10 @@ def display_instances(batch):
             edgecolor=color[classes],
             facecolor="none",
         )
-        ax.add_patch(rec)
+        axes.add_patch(rec)
 
     # output
-    ax.imshow(img)
+    axes.imshow(img)
     plt.savefig("mygraph.png")
     return
 
