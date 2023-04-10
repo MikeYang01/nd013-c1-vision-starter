@@ -14,10 +14,10 @@ I use remote workspace as the developing environment.
 # 3. Dataset
 ## 1. Dataset Analysis: 
 **This section should contain a quantitative and qualitative description of the dataset. It should include images, charts, and other visualizations.**
-![](viz.jpg)
+![](img/viz.jpg)
 Waymo open dataset provided road images both during the day and at night. In this dataset, we have 3 categoies of objects, they are vehicles, pedestrians, and cyclists. There are also different weather conditions in the dataset, for example, rainy, foggy and sunny.
 The following figure from is from randomly select 100 images. You can find that most of the images don't have cyclists.
-![](numberof100image.jpg)
+![](img/numberof100image.jpg)
 
 
 ## 2. Cross-validation: 
@@ -35,7 +35,7 @@ E.g, 70% training set, 15% validation set and 15% test set.
 **This section should detail the results of the reference experiment. It should include training metrics, Tensorboard charts, and a detailed explanation of the algorithm's performance.**
 The reference model is using ResNet50, the augumentaion is random_crop_image
 Training loss of the model is shown as following image:
-![](batch2-2500.jpg)
+![](img/batch2-2500.jpg)
 Performance:  
 All the losses are large and very noisy, localization loss does not seem to converge.   
 Resnet50 is based on CNN, batch size is the number of training examples in one forward/backward pass. If batch size is too small, it will not converge in time.
@@ -43,9 +43,12 @@ Resnet50 is based on CNN, batch size is the number of training examples in one f
 ## 2. Improve on the reference: 
 **This section should highlight the different strategies you adopted to improve your model. It should contain relevant figures and details of your findings.**
 Changes:  
-batch size: 2 -> 8,
-training steps 2500 -> 7500
+batch size: 2 -> 4,
+training steps 2500, no change due to insufficient GPU hour
 Training time: around 1 hour  
 From the following image, you can find new model is better than the sample model on losses. All the loses tend to converge.  
-I also changed the batch to 16 or 32, both are failed due to out of memory. 
-![](batch8-7500.jpg)
+I also changed the batch size to 16 or 32, both are failed due to out of memory. 
+![](img/loss.jpg)
+![](img/learning-rate.jpg)
+![](img/precision.jpg)
+![](img/recall.jpg)
